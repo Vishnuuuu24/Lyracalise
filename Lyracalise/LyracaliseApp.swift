@@ -11,7 +11,7 @@ import SwiftUI
 struct LyracaliseApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
