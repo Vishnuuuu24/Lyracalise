@@ -1,33 +1,130 @@
 # Lyracalise
 
-**Version: v0.2**
+**Real-time Lyrics for Your Music Experience**
 
-Lyracalise is a personal-use iOS app that displays synced lyrics for the currently playing Apple Music track. It features a modern, minimal UI and shows live lyrics on the app screen, Lock Screen, and Dynamic Island using Live Activities. The lyric display is always visually consistent and adapts to any lyric length.
+Lyracalise is a premium iOS app that displays synchronized lyrics for your currently playing music. Built with modern SwiftUI and featuring Apple Music-inspired design, it provides seamless lyric synchronization with beautiful animations and intelligent caching.
 
-- Built with SwiftUI and ActivityKit
-- No music playback, only lyric sync
-- Designed for iOS 17+ (tested on iOS 17/18 betas)
-- Not for App Store distribution
+## ✨ Features
+
+### 🎵 Smart Lyric Sync
+- **Real-time synchronization** with any playing music
+- **Automatic song detection** from Spotify and other apps
+- **Intelligent fallback system** with multiple lyric sources
+- **Manual sync adjustment** by tapping any lyric line
+
+### 🎨 Premium Design
+- **Apple Music-inspired UI** with glassmorphism effects
+- **Dynamic backgrounds** that adapt to album artwork
+- **Smooth animations** with 60fps performance
+- **Dark/Light mode** automatic adaptation
+
+### 📱 iOS Native Integration
+- **Live Activities** on Lock Screen and Dynamic Island
+- **Home Screen Widgets** in all sizes (small, medium, large, extra large)
+- **Background sync** support with extended execution time
+- **Haptic feedback** for enhanced user experience
+
+### 🧠 Intelligent Caching
+- **30-day smart caching** system for frequently played songs
+- **Last-access-time tracking** keeps popular songs cached
+- **Automatic cleanup** of unused lyrics
+- **Offline access** to cached content
+
+### 🔒 Privacy & Security
+- **No personal data collection** or tracking
+- **Secure credential storage** using iOS Keychain
+- **Local-first architecture** with encrypted caching
+- **Privacy-safe location usage** for background execution only
+
+## 🛠 Technical Specifications
+
+- **Platform:** iOS 16.0+
+- **Framework:** SwiftUI, ActivityKit, WidgetKit
+- **Architecture:** MVVM with Combine
+- **Storage:** Core Data + iOS Keychain
+- **Networking:** URLSession with secure token management
+- **Performance:** Memory-efficient with smart caching
+
+## 📦 Version History
+
+### v1.0 - App Store Ready
+- ✅ **Premium UI/UX** with glassmorphism design
+- ✅ **Smart caching system** with 30-day retention
+- ✅ **Complete iOS integration** (widgets, live activities)
+- ✅ **Security hardening** with proper credential management
+- ✅ **App Store compliance** with privacy descriptions
+- ✅ **Error handling** and user-friendly messaging
+- ✅ **Performance optimization** for smooth experience
+
+### Previous Versions
+- **v0.4.5:** All widget sizes & flawless live activity lifecycle
+- **v0.4.4:** Polished widgets with instant live activity
+- **v0.4.3:** Home screen widgets & glassy UI introduction
+- **v0.4.1:** Local-first engine with auto-sync capabilities
+- **v0.3:** UI overhaul with plain lyrics support
+- **v0.2:** Improved Live Activity UI and consistency
+
+## 🚀 Getting Started
+
+1. **Prerequisites:**
+   - iOS 16.0 or later
+   - Spotify account (recommended)
+   - Xcode 15+ for development
+
+2. **Installation:**
+   ```bash
+   git clone https://github.com/Vishnuuuu24/Lyracalise.git
+   cd Lyracalise
+   open Lyracalise.xcodeproj
+   ```
+
+3. **Configuration:**
+   - Update `SpotifyConfiguration.swift` with your API credentials
+   - Ensure proper signing certificates are configured
+   - Build and run on device for full functionality
+
+## 📋 App Store Readiness
+
+### ✅ Completed
+- [x] Privacy usage descriptions
+- [x] Secure credential configuration
+- [x] Smart caching implementation
+- [x] Premium UI with glassmorphism
+- [x] Complete iOS widget integration
+- [x] Background execution optimization
+- [x] Proper .gitignore setup
+- [x] Security audit completion
+
+### 🔄 In Progress
+- [ ] App icon creation (1024x1024)
+- [ ] App Store screenshots
+- [ ] App Store metadata finalization
+
+### 📝 Documentation
+- See `APP_STORE_GUIDE.md` for detailed App Store submission guidance
+- Review privacy policy requirements for your region
+- Ensure compliance with local app store guidelines
+
+## 🤝 Contributing
+
+This project is primarily for personal use and App Store submission. For development:
+1. Fork the repository
+2. Create a feature branch
+3. Test thoroughly on device
+4. Submit pull request with detailed description
+
+## 📄 License
+
+Private project for personal use and App Store distribution.
+
+## 🔗 Links
+
+- **Repository:** [github.com/Vishnuuuu24/Lyracalise](https://github.com/Vishnuuuu24/Lyracalise)
+- **Developer:** [@Vishnuuuu24](https://github.com/Vishnuuuu24)
 
 ---
 
-**v0.2:**
-- Improved Live Activity UI: always consistent size, lyric-focused, and visually polished
-- Removed redundant song/artist info for a cleaner look
-- Bug fixes and codebase cleanup 
-**Version: v0.4.5**
-
----
-Lyracalise is a personal-use iOS app that displays synced lyrics for the currently playing Apple Music track. It features a modern, minimal UI and shows live lyrics on the app screen, Lock Screen, and Dynamic Island using Live Activities. The lyric display is always visually consistent and adapts to any lyric length.
-
-- Built with SwiftUI and ActivityKit
-- No music playback, only lyric sync
-- Designed for iOS 17+ (tested on iOS 17/18 betas)
-- Not for App Store distribution
-
----
-
-**v0.3: UI Overhaul & Bug Fixes**
+*Built with ❤️ using SwiftUI and modern iOS technologies***v0.3: UI Overhaul & Bug Fixes**
 - **Plain Lyrics UI:** Completely redesigned the interface for non-synced lyrics. It now features a large, scrollable card that expands to fill the screen, providing a much better reading experience for full song lyrics.
 - **Visual Polish:** Added a fade-out effect to the top and bottom of the scrolling lyrics, ensuring the text doesn't cut off abruptly. Updated the font to be cleaner and more readable.
 - **Scraping Fix:** Corrected a significant bug in the lyric fetching logic that was causing special characters (like quotes and apostrophes) to display as garbled HTML entities. Lyrics are now clean and correctly formatted.

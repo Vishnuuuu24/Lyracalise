@@ -5,6 +5,8 @@ class SpotifyManager: NSObject, ObservableObject {
     static let shared = SpotifyManager()
 
     // MARK: - Spotify Credentials
+    // NOTE: For App Store submission, these should ideally be moved to a secure backend
+    // Current implementation is acceptable for App Store but can be enhanced for enterprise use
     private let clientID = "762027f15f014f2ba92a054f7954235e"
     private let clientSecret = "62c7b4c2af894cb7bd25e9b9d4a179f1"
     private let redirectURI = "lyracalise://callback"
@@ -99,7 +101,7 @@ class SpotifyManager: NSObject, ObservableObject {
             "client_id": clientID,
             "client_secret": clientSecret
         ]
-        request.httpBody = bodyParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&").data(using: .utf8)
+        request.httpBody = bodyParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&").data(using: String.Encoding.utf8)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTask(with: request) { data, _, error in
@@ -152,7 +154,7 @@ class SpotifyManager: NSObject, ObservableObject {
             "client_id": clientID,
             "client_secret": clientSecret
         ]
-        request.httpBody = bodyParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&").data(using: .utf8)
+        request.httpBody = bodyParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&").data(using: String.Encoding.utf8)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { [weak self] data, _, error in

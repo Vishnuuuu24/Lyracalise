@@ -60,6 +60,7 @@ class LyricSyncManager: ObservableObject {
     // MARK: - Background Task Management
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var lastSuccessfulUpdate: Date = Date()
+    private var needsLiveActivityRestart: Bool = false
     
     private func startBackgroundTask() {
         endBackgroundTask()
@@ -276,6 +277,13 @@ class LyricSyncManager: ObservableObject {
         // Check if we need to create a Live Activity now that we're in foreground
         if activity == nil && !nowPlayingTitle.isEmpty && !nowPlayingArtist.isEmpty && !isStopped {
             print("[LyricSyncManager] 🆕 Creating missing Live Activity now that app is in foreground")
+            Task { await startLiveActivity() }
+        }
+        
+        // Check if we need to restart Live Activity due to background failure
+        if needsLiveActivityRestart && !nowPlayingTitle.isEmpty && !nowPlayingArtist.isEmpty && !isStopped {
+            print("[LyricSyncManager] 🔄 Restarting Live Activity after background failure")
+            needsLiveActivityRestart = false
             Task { await startLiveActivity() }
         }
     }
@@ -821,6 +829,8 @@ class LyricSyncManager: ObservableObject {
         
         guard let activity = self.activity else {
             print("[SmartUpdate] ❌ No existing Live Activity to update")
+            // Mark that we need to restart Live Activity when app becomes active
+            self.needsLiveActivityRestart = true
             return
         }
         
@@ -836,8 +846,14 @@ class LyricSyncManager: ObservableObject {
             // Update the existing Live Activity - this works even in background!
             await activity.update(.init(state: newState, staleDate: nil))
             print("[SmartUpdate] ✅ Live Activity updated successfully with new song!")
+            // Clear restart flag since update was successful
+            needsLiveActivityRestart = false
         } catch {
             print("[SmartUpdate] ❌ Error updating Live Activity: \(error.localizedDescription)")
+            // Live Activity may have become invalid - clear our reference and mark for restart
+            self.activity = nil
+            self.needsLiveActivityRestart = true
+            print("[SmartUpdate] 🔄 Will restart Live Activity when app becomes active")
         }
     }
     
@@ -995,6 +1011,8 @@ class LyricSyncManager: ObservableObject {
                 content: .init(state: initialState, staleDate: nil)
             )
             print("[LiveActivity] ✅ Live Activity started successfully!")
+            // Clear restart flag since we successfully created a Live Activity
+            needsLiveActivityRestart = false
         } catch {
             print("[LiveActivity] ❌ Error requesting Live Activity: \(error.localizedDescription)")
         }
