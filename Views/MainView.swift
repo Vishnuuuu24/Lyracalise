@@ -85,18 +85,25 @@ struct MainView: View {
                 if !lyricSyncManager.nowPlayingTitle.isEmpty {
                     VStack(spacing: 4) {
                         Text(lyricSyncManager.nowPlayingTitle)
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
                             .foregroundColor(colorExtractor.primaryColor.readableTextColor.opacity(0.9))
                             .multilineTextAlignment(.center)
                             .lineLimit(1)
                         
                         if !lyricSyncManager.nowPlayingArtist.isEmpty {
                             Text(lyricSyncManager.nowPlayingArtist)
-                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
                                 .foregroundColor(colorExtractor.primaryColor.readableTextColor.opacity(0.7))
                                 .multilineTextAlignment(.center)
                                 .lineLimit(1)
                         }
+                        
+                        // Small status indicator
+                        Text(lyricSyncManager.statusMessage)
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundColor(colorExtractor.primaryColor.readableTextColor.opacity(0.5))
+                            .multilineTextAlignment(.center)
+                            .lineLimit(1)
                     }
                     .padding(.bottom, 24)
                     .offset(y: cardsOffset)
@@ -165,7 +172,8 @@ struct MainView: View {
         }
         .onAppear {
             startLiquidGlassAnimations()
-            lyricSyncManager.startLyricSync()
+            // Instead of always calling startLyricSync, check if we should auto-resume
+            lyricSyncManager.resumeOrStartLyricSync()
         }
         .onChange(of: spotifyManager.currentTrack) { _, newTrack in
             // Update album artwork colors when track changes

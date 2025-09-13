@@ -25,7 +25,7 @@ class LyricSyncManager: ObservableObject {
     // MARK: - Published Properties for UI
     @Published var nowPlayingTitle: String = ""
     @Published var nowPlayingArtist: String = ""
-    @Published var statusMessage: String = "Waiting for a song to play..."
+    @Published var statusMessage: String = "Waiting..."
     @Published var manualSearchEnabled: Bool = false
     
     // MARK: - Privacy-Safe Background Execution
@@ -128,6 +128,9 @@ class LyricSyncManager: ObservableObject {
     init() {
         stopAll(showStopped: false)
         
+        // Clean up expired cache files
+        cleanExpiredCache()
+        
         // Check if this is first launch for privacy education
         let hasSeenPrivacyEducation = UserDefaults.standard.bool(forKey: "hasSeenPrivacyEducation")
         if !hasSeenPrivacyEducation {
@@ -229,7 +232,7 @@ class LyricSyncManager: ObservableObject {
                     // Clear stale data if no track is playing
                     self.nowPlayingTitle = ""
                     self.nowPlayingArtist = ""
-                    self.statusMessage = "Waiting for a song to play..."
+                    self.statusMessage = "Waiting..."
                 }
                 
                 // ALWAYS force widget update after startup, regardless of track status
@@ -317,6 +320,8 @@ class LyricSyncManager: ObservableObject {
                     HapticManager.shared.lyricChanged()
                     
                     self.updateLiveActivity(lyric: newLine)
+                    // IMPORTANT: Update widget when lyrics change!
+                    self.updateWidgetSharedData()
                 }
             }
         }
@@ -352,6 +357,78 @@ class LyricSyncManager: ObservableObject {
         self.currentLineIndex = index
         self.currentLine = self.loadedLyrics[index].line
         self.updateLiveActivity(lyric: self.currentLine)
+    }
+
+    func resumeOrStartLyricSync() {
+        print("[Resume] 🔄 Checking if we should auto-resume or start fresh")
+        
+        // Clear any termination flags
+        if let sharedDefaults = UserDefaults(suiteName: "group.com.vishnu.lyracalise") {
+            sharedDefaults.removeObject(forKey: "appTerminationTime")
+            sharedDefaults.removeObject(forKey: "terminationReason")
+            sharedDefaults.set(true, forKey: "appIsActive")
+        }
+        
+        self.isStopped = false
+        
+        if SpotifyManager.shared.isLoggedIn {
+            SpotifyManager.shared.fetchCurrentTrack { [weak self] track in
+                guard let self = self else { return }
+                if let track = track {
+                    print("[Resume] 🎵 Current track: \(track.name)")
+                    
+                    // Update track info immediately
+                    self.nowPlayingTitle = track.name
+                    self.nowPlayingArtist = track.artist
+                    self.nowPlayingTrackID = track.id
+                    self.lastProgressMs = track.progressMs
+                    self.syncState = (track.isPlaying ?? true) ? .playing : .paused
+                    
+                    // Check if we have lyrics loaded for this track
+                    if !self.loadedLyrics.isEmpty {
+                        print("[Resume] ✅ Found existing lyrics - auto-syncing to current position")
+                        // Auto-sync to current position without resetting everything
+                        if let progressMs = track.progressMs {
+                            self.setLyricSyncOffset(milliseconds: progressMs)
+                        }
+                        self.startSyncing() // Start timer immediately
+                        self.statusMessage = "Auto-synced"
+                    } else {
+                        print("[Resume] 🔍 No lyrics loaded - starting fresh sync")
+                        // No lyrics yet, load them
+                        self.loadLyricsForCurrentSong()
+                        self.statusMessage = "Loading..."
+                    }
+                    
+                    // Start or update Live Activity
+                    Task { await self.smartLiveActivityUpdate() }
+                } else {
+                    print("[Resume] ❌ No current track found")
+                    self.statusMessage = "No music"
+                }
+                // Always update widgets
+                self.updateWidgetSharedData()
+            }
+            startSpotifyObservation()
+        } else {
+            // For Apple Music
+            startNowPlayingObservation()
+            
+            if !nowPlayingTitle.isEmpty && !nowPlayingArtist.isEmpty {
+                if !loadedLyrics.isEmpty {
+                    print("[Resume] ✅ Found existing lyrics for Apple Music - starting sync")
+                    startSyncing()
+                    statusMessage = "Auto-synced"
+                } else {
+                    loadLyricsForCurrentSong()
+                    statusMessage = "Loading..."
+                }
+                Task { await self.smartLiveActivityUpdate() }
+            } else {
+                statusMessage = "Waiting..."
+            }
+            updateWidgetSharedData()
+        }
     }
 
     func startLyricSync() {
@@ -406,10 +483,10 @@ class LyricSyncManager: ObservableObject {
                     // Start or update Live Activity
                     Task { await self.smartLiveActivityUpdate() }
                     
-                    self.statusMessage = "Syncing lyrics..."
+                    self.statusMessage = "Syncing..."
                 } else {
                     print("[Start] ❌ No current track found")
-                    self.statusMessage = "No music playing. Start playing a song and try again."
+                    self.statusMessage = "No music. Start a song and try again."
                 }
                 // Always update widgets after start attempt
                 self.updateWidgetSharedData()
@@ -427,9 +504,9 @@ class LyricSyncManager: ObservableObject {
                     startSyncing()
                 }
                 Task { await self.smartLiveActivityUpdate() }
-                statusMessage = "Syncing lyrics..."
+                statusMessage = "Syncing..."
             } else {
-                statusMessage = "Waiting for music to start..."
+                statusMessage = "Waiting..."
             }
             updateWidgetSharedData()
         }
@@ -447,7 +524,7 @@ class LyricSyncManager: ObservableObject {
         nowPlayingTimeoutTimer = Timer.scheduledTimer(withTimeInterval: timeout, repeats: false) { [weak self] _ in
             guard let self = self else { return }
             if self.nowPlayingTitle.isEmpty {
-                self.statusMessage = "Automatic detection failed. Please search manually."
+                self.statusMessage = "Auto-detection failed. Search manually."
                 self.manualSearchEnabled = true
             }
         }
@@ -490,7 +567,7 @@ class LyricSyncManager: ObservableObject {
         let title = parts.count > 1 ? parts.dropFirst().joined(separator: "-").trimmingCharacters(in: .whitespacesAndNewlines) : cleanedQuery
         
         guard !title.isEmpty else {
-            self.statusMessage = "Please enter a song title."
+            self.statusMessage = "Enter a song title."
             return
         }
         
@@ -508,14 +585,36 @@ class LyricSyncManager: ObservableObject {
             let lyricsFolderURL = documentsURL.appendingPathComponent("Lyrics")
             let fileURL = lyricsFolderURL.appendingPathComponent("\(filename).lrc")
 
-            if FileManager.default.fileExists(atPath: fileURL.path),
-               let lrcContent = try? String(contentsOf: fileURL) {
-                let parsedLyrics = WebLyricsFetcher.parseLRC(lrcContent)
-                self.loadedLyrics = parsedLyrics
-                self.statusMessage = "Lyrics loaded from local file."
-                self.startSyncing()
-                Task { await self.smartLiveActivityUpdate() }
-                return
+            // Check if cached file exists and is within 30-day limit
+            if FileManager.default.fileExists(atPath: fileURL.path) {
+                do {
+                    let fileAttributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)
+                    if let modificationDate = fileAttributes[FileAttributeKey.modificationDate] as? Date {
+                        let daysSinceLastAccess = Calendar.current.dateComponents([.day], from: modificationDate, to: Date()).day ?? 0
+                        
+                        if daysSinceLastAccess <= 30 {
+                            // File is fresh, load from cache
+                            if let lrcContent = try? String(contentsOf: fileURL) {
+                                let parsedLyrics = WebLyricsFetcher.parseLRC(lrcContent)
+                                self.loadedLyrics = parsedLyrics
+                                
+                                // Update access time by touching the file's modification date
+                                try? FileManager.default.setAttributes([FileAttributeKey.modificationDate: Date()], ofItemAtPath: fileURL.path)
+                                
+                                self.statusMessage = "Cached"
+                                self.startSyncing()
+                                Task { await self.smartLiveActivityUpdate() }
+                                return
+                            }
+                        } else {
+                            // File hasn't been accessed in 30+ days, remove it
+                            try? FileManager.default.removeItem(at: fileURL)
+                            self.statusMessage = "Cache expired"
+                        }
+                    }
+                } catch {
+                    print("Error checking file attributes: \(error)")
+                }
             }
         }
 
@@ -534,11 +633,11 @@ class LyricSyncManager: ObservableObject {
                 print("[Background] 🎵 Started background lyrics fetch task")
             }
             
-            self.statusMessage = "No local file found. Searching online..."
+            self.statusMessage = "Searching..."
             let results = await WebLyricsFetcher.search(for: query)
             
             if results.isEmpty {
-                self.statusMessage = "No results found for '\(query)'."
+                self.statusMessage = "Not found"
                 self.autoSelectedFirstResult = false
             } else if results.count == 1 {
                 self.autoSelectedFirstResult = false
@@ -558,7 +657,7 @@ class LyricSyncManager: ObservableObject {
     
     func selectSearchResult(_ result: LrclibSearchResult) {
         self.isShowingSearchResults = false
-        self.statusMessage = "Fetching lyrics..."
+        self.statusMessage = "Fetching..."
         
         Task {
             if let lrcContent = await WebLyricsFetcher.fetchLrcContent(for: result.id) {
@@ -568,14 +667,14 @@ class LyricSyncManager: ObservableObject {
                     self.nowPlayingTitle = result.name
                     self.nowPlayingArtist = result.artistName
                     self.loadedLyrics = parsedLyrics
-                    self.statusMessage = "Lyrics loaded!"
+                    self.statusMessage = "Loaded!"
                     
                     // Premium haptic feedback for successful lyrics loading
                     HapticManager.shared.lyricsLoaded()
                     
                     if MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] as? TimeInterval ?? 0 <= 0 {
                         self.simulatedPlaybackStartTime = Date()
-                        self.statusMessage = "Starting from beginning. Tap a line to sync."
+                        self.statusMessage = "Tap a line to sync."
                     }
                     
                     self.startSyncing()
@@ -1206,5 +1305,36 @@ class LyricSyncManager: ObservableObject {
     
     var locationPermissionStatus: String {
         return locationManager.permissionStatus
+    }
+    
+    // MARK: - Cache Management
+    
+    /// Cleans up expired lyrics cache files (not accessed in 30 days)
+    func cleanExpiredCache() {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+        
+        let lyricsFolderURL = documentsURL.appendingPathComponent("Lyrics")
+        
+        guard FileManager.default.fileExists(atPath: lyricsFolderURL.path) else {
+            return
+        }
+        
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: lyricsFolderURL, includingPropertiesForKeys: [.contentModificationDateKey], options: [])
+            let cutoffDate = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
+            
+            for fileURL in files {
+                if let resourceValues = try? fileURL.resourceValues(forKeys: [.contentModificationDateKey]),
+                   let modificationDate = resourceValues.contentModificationDate,
+                   modificationDate < cutoffDate {
+                    try FileManager.default.removeItem(at: fileURL)
+                    print("[Cache] 🗑️ Removed unused cache file (last accessed \(Calendar.current.dateComponents([.day], from: modificationDate, to: Date()).day ?? 0) days ago): \(fileURL.lastPathComponent)")
+                }
+            }
+        } catch {
+            print("[Cache] ⚠️ Error cleaning cache: \(error)")
+        }
     }
 }

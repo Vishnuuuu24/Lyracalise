@@ -113,44 +113,42 @@ struct AppleMusicLyricLineView: View {
             
             onTap()
         }) {
-            // Fixed container height to prevent jumping
+            // Ultra-robust container for consistent line wrapping across all text types
             ZStack {
-                // Invisible text at max size to reserve space
+                // Invisible text that exactly matches the largest possible visible configuration
                 Text(lyric)
-                    .font(.system(size: 30, weight: .bold, design: .rounded)) // Max font size
+                    .font(.system(size: baseSize, weight: .bold, design: .rounded)) // Exact same font as visible text
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
-                    .padding(.vertical, 20) // Max padding
-                    .opacity(0) // Invisible but reserves space
+                    .padding(.vertical, 20)
+                    .scaleEffect(maxTextScale) // Exact same max scale as visible text
+                    .opacity(0) // Invisible but reserves exact space needed
                 
-                // Actual visible text with morphing size/opacity
+                // Visible text with consistent rendering - no font changes, only scaling/opacity
                 Text(lyric)
-                    .font(.system(
-                        size: fontSize,
-                        weight: fontWeight,
-                        design: .rounded
-                    ))
+                    .font(.system(size: baseSize, weight: baseWeight, design: .rounded)) // Fixed font always
                     .foregroundStyle(foregroundStyle)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
                     .padding(.vertical, verticalPadding)
-                    .scaleEffect(textScale) // Smooth scaling instead of font size jumps
-                    .animation(.easeInOut(duration: 0.4), value: isCurrentLine) // Smooth morphing
+                    .scaleEffect(textScale) // Only scaling changes for size
+                    .opacity(textOpacity) // Use opacity for weight effect
+                    .animation(.easeInOut(duration: 0.3), value: isCurrentLine) // Shorter, smoother animation
             }
         }
         .buttonStyle(PlainButtonStyle())
         .scaleEffect(scale)
         .shadow(
-            color: isCurrentLine ? .white.opacity(0.3) : .clear,
-            radius: isCurrentLine ? 12 : 0,
+            color: isCurrentLine ? .white.opacity(0.2) : .clear,
+            radius: isCurrentLine ? 8 : 0,
             x: 0,
             y: 0
         )
-        .animation(.easeInOut(duration: 0.4), value: isCurrentLine) // Smooth shadow transition
+        .animation(.easeInOut(duration: 0.3), value: isCurrentLine) // Gentler shadow animation
         .overlay(
             // Shimmer effect for current line like Apple Music
             isCurrentLine ? 
@@ -168,11 +166,7 @@ struct AppleMusicLyricLineView: View {
                     )
                     .mask(
                         Text(lyric)
-                            .font(.system(
-                                size: fontSize,
-                                weight: fontWeight,
-                                design: .rounded
-                            ))
+                            .font(.system(size: baseSize, weight: baseWeight, design: .rounded)) // Consistent font
                             .multilineTextAlignment(.center)
                             .scaleEffect(textScale)
                     )
@@ -190,58 +184,61 @@ struct AppleMusicLyricLineView: View {
         }
     }
     
-    // Use more subtle font size differences to reduce wrapping changes
-    private var fontSize: CGFloat {
-        if isCurrentLine {
-            return 26  // Reduced from 32 to minimize wrapping
-        } else if isAdjacentLine {
-            return 22  // Closer to current size
-        } else {
-            return 20  // Not as small
-        }
+    // Fixed base font size for ultra-consistent line wrapping
+    private var baseSize: CGFloat {
+        return 24 // Single base size for all lines
     }
     
-    // Use scaling for additional emphasis instead of just font size
+    // Fixed base weight to prevent font rendering changes
+    private var baseWeight: Font.Weight {
+        return .semibold // Single weight for all text to prevent blinking
+    }
+    
+    // Maximum scale for space reservation
+    private var maxTextScale: CGFloat {
+        return 1.3 // Largest scale we'll ever use
+    }
+    
+    // Use scaling for size differences - very conservative values
     private var textScale: CGFloat {
         if isCurrentLine {
-            return 1.1  // Slight scale up for current line
+            return 1.3  // Larger scale for current line
+        } else if isAdjacentLine {
+            return 1.15  // Slightly larger for adjacent
         } else {
-            return 1.0
+            return 1.0   // Normal scale for others
         }
     }
     
-    private var fontWeight: Font.Weight {
+    // Use opacity instead of font weight to prevent rendering issues
+    private var textOpacity: Double {
         if isCurrentLine {
-            return .bold  // Bold current line like Apple Music
+            return 1.0   // Full opacity for current
         } else if isAdjacentLine {
-            return .semibold
+            return 0.85  // Slightly dimmed for adjacent
         } else {
-            return .medium
+            return 0.7   // More dimmed for others
         }
+    }
+    
+    // Legacy property kept for compatibility
+    private var fontWeight: Font.Weight {
+        return baseWeight // Always use base weight now
     }
     
     private var foregroundStyle: some ShapeStyle {
-        let readableTextColor = colorExtractor.primaryColor.readableTextColor
-        let readableAccentColor = colorExtractor.accentColor.readableTextColor
-        
+        // Use consistent white gradient for better international text rendering
         if isCurrentLine {
-            // Bright white like Apple Music current line
+            // Bright white for current line
             return LinearGradient(
-                colors: [.white, .white.opacity(0.95), .white],
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-        } else if isAdjacentLine {
-            // Slightly dimmed
-            return LinearGradient(
-                colors: [readableTextColor.opacity(0.8), readableTextColor.opacity(0.7)],
+                colors: [.white, .white.opacity(0.98), .white],
                 startPoint: .leading,
                 endPoint: .trailing
             )
         } else {
-            // Much dimmer like Apple Music
+            // Consistent white for all other lines (opacity handled separately)
             return LinearGradient(
-                colors: [readableTextColor.opacity(0.4), readableTextColor.opacity(0.4)],
+                colors: [.white.opacity(0.9), .white.opacity(0.85), .white.opacity(0.9)],
                 startPoint: .leading,
                 endPoint: .trailing
             )
