@@ -556,7 +556,12 @@ class LyricSyncManager: ObservableObject {
     private func resetStateForNewSong() {
         self.loadedLyrics = []
         self.staticLyrics = nil
-        self.currentLine = ""
+        // Don't clear currentLine if we have an active Live Activity - preserve it during transition
+        if self.activity == nil {
+            self.currentLine = ""
+        } else {
+            print("[ResetState] 📱 Preserving currentLine for Live Activity transition: '\(self.currentLine)'")
+        }
         self.currentLineIndex = nil
         self.manualSyncOffset = nil
         self.manualSyncStartTime = nil
@@ -611,7 +616,14 @@ class LyricSyncManager: ObservableObject {
                                 
                                 self.statusMessage = "Cached"
                                 self.startSyncing()
-                                Task { await self.smartLiveActivityUpdate() }
+                                // GENTLE UPDATE: Just update current lyric for cached lyrics
+                                if let activity = self.activity {
+                                    let currentLyric = self.currentLine.isEmpty ? "♪ \(self.nowPlayingTitle) - Cached lyrics loaded!" : self.currentLine
+                                    self.updateLiveActivity(lyric: currentLyric)
+                                    print("[CachedLyricsLoaded] ✅ Updated Live Activity with cached lyrics")
+                                } else {
+                                    Task { await self.smartLiveActivityUpdate() }
+                                }
                                 return
                             }
                         } else {
@@ -688,8 +700,15 @@ class LyricSyncManager: ObservableObject {
                     self.startSyncing()
                 }
                 
-                // SMART: Use update logic instead of creating new Live Activity
-                await self.smartLiveActivityUpdate()
+                // GENTLE UPDATE: Just update current lyric instead of aggressive smart update
+                if let activity = self.activity {
+                    let currentLyric = self.currentLine.isEmpty ? "♪ \(self.nowPlayingTitle) - Lyrics loaded!" : self.currentLine
+                    self.updateLiveActivity(lyric: currentLyric)
+                    print("[LyricsLoaded] ✅ Updated Live Activity with loaded lyrics")
+                } else {
+                    // Only use smart update if no existing activity
+                    await self.smartLiveActivityUpdate()
+                }
                 self.saveLyricsToFile(lrcContent: lrcContent, for: result.name, artist: result.artistName)
             } else {
                 await MainActor.run {
@@ -716,8 +735,15 @@ class LyricSyncManager: ObservableObject {
                     self.statusMessage = "Starting from beginning. Tap a line to sync."
                 }
                 self.startSyncing()
-                // SMART: Use update logic instead of creating new Live Activity
-                await self.smartLiveActivityUpdate()
+                // GENTLE UPDATE: Just update current lyric instead of aggressive smart update
+                if let activity = self.activity {
+                    let currentLyric = self.currentLine.isEmpty ? "♪ \(self.nowPlayingTitle) - Lyrics loaded!" : self.currentLine
+                    self.updateLiveActivity(lyric: currentLyric)
+                    print("[AutoLyricsLoaded] ✅ Updated Live Activity with auto-loaded lyrics")
+                } else {
+                    // Only use smart update if no existing activity
+                    await self.smartLiveActivityUpdate()
+                }
                 self.saveLyricsToFile(lrcContent: lrcContent, for: firstResult.name, artist: firstResult.artistName)
             } else {
                 self.searchResults = results
@@ -834,9 +860,17 @@ class LyricSyncManager: ObservableObject {
             return
         }
         
-        // Create new content state with updated song info and current lyric
+        // Create transitional state showing new song info while lyrics load
+        let transitionLyric: String
+        if currentLine.isEmpty {
+            transitionLyric = "♪ \(nowPlayingTitle) - Loading lyrics..."
+        } else {
+            // Keep current lyric if we have one during transition
+            transitionLyric = currentLine
+        }
+        
         let newState = LyricAttributes.ContentState(
-            currentLyric: currentLine.isEmpty ? "♪ \(nowPlayingTitle)" : currentLine,
+            currentLyric: transitionLyric,
             songTitle: nowPlayingTitle,
             artist: nowPlayingArtist,
             timestamp: Date()
@@ -914,9 +948,6 @@ class LyricSyncManager: ObservableObject {
     private func smartLiveActivityUpdate() async {
         print("[SmartLiveActivity] 🧠 Smart update called - existing activity: \(activity != nil)")
         
-        // FIRST: Clean up any orphaned Live Activities to prevent stacking
-        await cleanupAllLiveActivities()
-        
         if let existingActivity = activity {
             // Check if the activity is still valid
             if existingActivity.activityState == .active {
@@ -925,10 +956,14 @@ class LyricSyncManager: ObservableObject {
             } else {
                 print("[SmartLiveActivity] 🔄 Existing activity is stale, creating new one")
                 self.activity = nil
+                // Clean up only when we know we need to recreate
+                await cleanupAllLiveActivities()
                 await startLiveActivity()
             }
         } else {
             print("[SmartLiveActivity] 🆕 No existing activity, creating new one")
+            // Clean up any orphaned activities before creating new one
+            await cleanupAllLiveActivities()
             await startLiveActivity()
         }
     }
