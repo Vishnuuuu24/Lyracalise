@@ -1,0 +1,17 @@
+[
+    {
+        "key": "cmd+shift+b",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Build Lyracalise"
+    },
+    {
+        "key": "cmd+shift+r",
+        "command": "workbench.action.tasks.runTask", 
+        "args": "Clean Build Lyracalise"
+    },
+    {
+        "key": "cmd+shift+t",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Run Tests"
+    }
+]

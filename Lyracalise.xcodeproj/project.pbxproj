@@ -1,0 +1,1044 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		270034322DFC180900F319E0 /* sample.lrc in Resources */ = {isa = PBXBuildFile; fileRef = 270034312DFC17FA00F319E0 /* sample.lrc */; };
+		272011702E0AAC7000C54BD6 /* LRCParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2720116E2E0AAC7000C54BD6 /* LRCParser.swift */; };
+		272011762E0AB51C00C54BD6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272011732E0AB51C00C54BD6 /* Secrets.swift */; };
+		272011772E0AB51C00C54BD6 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 272011742E0AB51C00C54BD6 /* Secrets.xcconfig */; };
+		272011AE2E0ADDC700C54BD6 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 272011AD2E0ADDC700C54BD6 /* MediaPlayer.framework */; };
+		275B60522E0EB6350074561B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276E0C7D2E091DA0009EE35F /* WidgetKit.framework */; };
+		275B60532E0EB6350074561B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276E0C7F2E091DA0009EE35F /* SwiftUI.framework */; };
+		275B60622E0EB6360074561B /* LyracaliseLyricWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 275B60512E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		276E0C7E2E091DA0009EE35F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276E0C7D2E091DA0009EE35F /* WidgetKit.framework */; };
+		276E0C802E091DA0009EE35F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276E0C7F2E091DA0009EE35F /* SwiftUI.framework */; };
+		276E0C912E091DA1009EE35F /* LyracaliseWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 276E0C7B2E091DA0009EE35F /* LyracaliseWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		27B42BC82E756F8300F20DAE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 272011B02E0AE1EE00C54BD6 /* SwiftSoup */; };
+		27C94DBA2E0A8BFD000FE67A /* Taylor Swift - Love Story.lrc in Resources */ = {isa = PBXBuildFile; fileRef = 27C94DB82E0A8BFD000FE67A /* Taylor Swift - Love Story.lrc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		270033F72DFC11DB00F319E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 270033E12DFC11DA00F319E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 270033E82DFC11DA00F319E0;
+			remoteInfo = Lyracalise;
+		};
+		270034012DFC11DB00F319E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 270033E12DFC11DA00F319E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 270033E82DFC11DA00F319E0;
+			remoteInfo = Lyracalise;
+		};
+		275B60602E0EB6360074561B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 270033E12DFC11DA00F319E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 275B60502E0EB6350074561B;
+			remoteInfo = LyracaliseLyricWidgetExtensionExtension;
+		};
+		276E0C8F2E091DA1009EE35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 270033E12DFC11DA00F319E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 276E0C7A2E091DA0009EE35F;
+			remoteInfo = LyracaliseWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		276E0C962E091DA1009EE35F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				276E0C912E091DA1009EE35F /* LyracaliseWidgetExtension.appex in Embed Foundation Extensions */,
+				275B60622E0EB6360074561B /* LyracaliseLyricWidgetExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		270033E92DFC11DA00F319E0 /* Lyracalise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lyracalise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		270033F62DFC11DB00F319E0 /* LyracaliseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyracaliseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		270034002DFC11DB00F319E0 /* LyracaliseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyracaliseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		270034312DFC17FA00F319E0 /* sample.lrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample.lrc; sourceTree = "<group>"; };
+		2720116E2E0AAC7000C54BD6 /* LRCParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRCParser.swift; sourceTree = "<group>"; };
+		272011732E0AB51C00C54BD6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		272011742E0AB51C00C54BD6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		272011AD2E0ADDC700C54BD6 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		275B60492E0EB3600074561B /* LyracaliseWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyracaliseWidgetExtension.entitlements; sourceTree = "<group>"; };
+		275B60512E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LyracaliseLyricWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		275B60692E0EB73C0074561B /* LyracaliseLyricWidgetExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LyracaliseLyricWidgetExtensionExtension.entitlements; sourceTree = "<group>"; };
+		276E0C7B2E091DA0009EE35F /* LyracaliseWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LyracaliseWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		276E0C7D2E091DA0009EE35F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		276E0C7F2E091DA0009EE35F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		27C94DB82E0A8BFD000FE67A /* Taylor Swift - Love Story.lrc */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Taylor Swift - Love Story.lrc"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		275B60662E0EB6360074561B /* Exceptions for "LyracaliseLyricWidgetExtension" folder in "LyracaliseLyricWidgetExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 275B60502E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension */;
+		};
+		276E0C922E091DA1009EE35F /* Exceptions for "LyracaliseWidget" folder in "LyracaliseWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 276E0C7A2E091DA0009EE35F /* LyracaliseWidgetExtension */;
+		};
+		27E9079A2E17ECBE00B4289E /* Exceptions for "Lyracalise" folder in "Lyracalise" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 270033E82DFC11DA00F319E0 /* Lyracalise */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		270033EB2DFC11DA00F319E0 /* Lyracalise */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				27E9079A2E17ECBE00B4289E /* Exceptions for "Lyracalise" folder in "Lyracalise" target */,
+			);
+			path = Lyracalise;
+			sourceTree = "<group>";
+		};
+		270033F92DFC11DB00F319E0 /* LyracaliseTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LyracaliseTests;
+			sourceTree = "<group>";
+		};
+		270034032DFC11DB00F319E0 /* LyracaliseUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LyracaliseUITests;
+			sourceTree = "<group>";
+		};
+		270034132DFC16DC00F319E0 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		270034162DFC170100F319E0 /* Managers */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		270034172DFC170B00F319E0 /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		270034182DFC171C00F319E0 /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		275B60542E0EB6350074561B /* LyracaliseLyricWidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				275B60662E0EB6360074561B /* Exceptions for "LyracaliseLyricWidgetExtension" folder in "LyracaliseLyricWidgetExtensionExtension" target */,
+			);
+			path = LyracaliseLyricWidgetExtension;
+			sourceTree = "<group>";
+		};
+		276E0C812E091DA0009EE35F /* LyracaliseWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				276E0C922E091DA1009EE35F /* Exceptions for "LyracaliseWidget" folder in "LyracaliseWidgetExtension" target */,
+			);
+			path = LyracaliseWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		270033E62DFC11DA00F319E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27B42BC82E756F8300F20DAE /* SwiftSoup in Frameworks */,
+				272011AE2E0ADDC700C54BD6 /* MediaPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033F32DFC11DB00F319E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033FD2DFC11DB00F319E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		275B604E2E0EB6350074561B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				275B60532E0EB6350074561B /* SwiftUI.framework in Frameworks */,
+				275B60522E0EB6350074561B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		276E0C782E091DA0009EE35F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				276E0C802E091DA0009EE35F /* SwiftUI.framework in Frameworks */,
+				276E0C7E2E091DA0009EE35F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		270033E02DFC11DA00F319E0 = {
+			isa = PBXGroup;
+			children = (
+				275B60692E0EB73C0074561B /* LyracaliseLyricWidgetExtensionExtension.entitlements */,
+				275B60492E0EB3600074561B /* LyracaliseWidgetExtension.entitlements */,
+				270034312DFC17FA00F319E0 /* sample.lrc */,
+				270034182DFC171C00F319E0 /* Extensions */,
+				270034172DFC170B00F319E0 /* Models */,
+				270034162DFC170100F319E0 /* Managers */,
+				270033EB2DFC11DA00F319E0 /* Lyracalise */,
+				270033F92DFC11DB00F319E0 /* LyracaliseTests */,
+				270034032DFC11DB00F319E0 /* LyracaliseUITests */,
+				276E0C812E091DA0009EE35F /* LyracaliseWidget */,
+				275B60542E0EB6350074561B /* LyracaliseLyricWidgetExtension */,
+				276E0C7C2E091DA0009EE35F /* Frameworks */,
+				270033EA2DFC11DA00F319E0 /* Products */,
+				270034132DFC16DC00F319E0 /* Views */,
+				27C94DB92E0A8BFD000FE67A /* Lyrics */,
+				2720116F2E0AAC7000C54BD6 /* Parsing */,
+				272011752E0AB51C00C54BD6 /* Config */,
+			);
+			sourceTree = "<group>";
+		};
+		270033EA2DFC11DA00F319E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				270033E92DFC11DA00F319E0 /* Lyracalise.app */,
+				270033F62DFC11DB00F319E0 /* LyracaliseTests.xctest */,
+				270034002DFC11DB00F319E0 /* LyracaliseUITests.xctest */,
+				276E0C7B2E091DA0009EE35F /* LyracaliseWidgetExtension.appex */,
+				275B60512E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2720116F2E0AAC7000C54BD6 /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				2720116E2E0AAC7000C54BD6 /* LRCParser.swift */,
+			);
+			path = Parsing;
+			sourceTree = "<group>";
+		};
+		272011752E0AB51C00C54BD6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				272011732E0AB51C00C54BD6 /* Secrets.swift */,
+				272011742E0AB51C00C54BD6 /* Secrets.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		276E0C7C2E091DA0009EE35F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				272011AD2E0ADDC700C54BD6 /* MediaPlayer.framework */,
+				276E0C7D2E091DA0009EE35F /* WidgetKit.framework */,
+				276E0C7F2E091DA0009EE35F /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27C94DB92E0A8BFD000FE67A /* Lyrics */ = {
+			isa = PBXGroup;
+			children = (
+				27C94DB82E0A8BFD000FE67A /* Taylor Swift - Love Story.lrc */,
+			);
+			path = Lyrics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		270033E82DFC11DA00F319E0 /* Lyracalise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2700340A2DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "Lyracalise" */;
+			buildPhases = (
+				270033E52DFC11DA00F319E0 /* Sources */,
+				270033E62DFC11DA00F319E0 /* Frameworks */,
+				270033E72DFC11DA00F319E0 /* Resources */,
+				276E0C962E091DA1009EE35F /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				276E0C902E091DA1009EE35F /* PBXTargetDependency */,
+				275B60612E0EB6360074561B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				270033EB2DFC11DA00F319E0 /* Lyracalise */,
+				270034132DFC16DC00F319E0 /* Views */,
+				270034162DFC170100F319E0 /* Managers */,
+				270034172DFC170B00F319E0 /* Models */,
+				270034182DFC171C00F319E0 /* Extensions */,
+			);
+			name = Lyracalise;
+			packageProductDependencies = (
+				272011B02E0AE1EE00C54BD6 /* SwiftSoup */,
+			);
+			productName = Lyracalise;
+			productReference = 270033E92DFC11DA00F319E0 /* Lyracalise.app */;
+			productType = "com.apple.product-type.application";
+		};
+		270033F52DFC11DB00F319E0 /* LyracaliseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2700340D2DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "LyracaliseTests" */;
+			buildPhases = (
+				270033F22DFC11DB00F319E0 /* Sources */,
+				270033F32DFC11DB00F319E0 /* Frameworks */,
+				270033F42DFC11DB00F319E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				270033F82DFC11DB00F319E0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				270033F92DFC11DB00F319E0 /* LyracaliseTests */,
+			);
+			name = LyracaliseTests;
+			packageProductDependencies = (
+			);
+			productName = LyracaliseTests;
+			productReference = 270033F62DFC11DB00F319E0 /* LyracaliseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		270033FF2DFC11DB00F319E0 /* LyracaliseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 270034102DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "LyracaliseUITests" */;
+			buildPhases = (
+				270033FC2DFC11DB00F319E0 /* Sources */,
+				270033FD2DFC11DB00F319E0 /* Frameworks */,
+				270033FE2DFC11DB00F319E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				270034022DFC11DB00F319E0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				270034032DFC11DB00F319E0 /* LyracaliseUITests */,
+			);
+			name = LyracaliseUITests;
+			packageProductDependencies = (
+			);
+			productName = LyracaliseUITests;
+			productReference = 270034002DFC11DB00F319E0 /* LyracaliseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		275B60502E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 275B60632E0EB6360074561B /* Build configuration list for PBXNativeTarget "LyracaliseLyricWidgetExtensionExtension" */;
+			buildPhases = (
+				275B604D2E0EB6350074561B /* Sources */,
+				275B604E2E0EB6350074561B /* Frameworks */,
+				275B604F2E0EB6350074561B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				275B60542E0EB6350074561B /* LyracaliseLyricWidgetExtension */,
+			);
+			name = LyracaliseLyricWidgetExtensionExtension;
+			packageProductDependencies = (
+			);
+			productName = LyracaliseLyricWidgetExtensionExtension;
+			productReference = 275B60512E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		276E0C7A2E091DA0009EE35F /* LyracaliseWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 276E0C932E091DA1009EE35F /* Build configuration list for PBXNativeTarget "LyracaliseWidgetExtension" */;
+			buildPhases = (
+				276E0C772E091DA0009EE35F /* Sources */,
+				276E0C782E091DA0009EE35F /* Frameworks */,
+				276E0C792E091DA0009EE35F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				276E0C812E091DA0009EE35F /* LyracaliseWidget */,
+			);
+			name = LyracaliseWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = LyracaliseWidgetExtension;
+			productReference = 276E0C7B2E091DA0009EE35F /* LyracaliseWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		270033E12DFC11DA00F319E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					270033E82DFC11DA00F319E0 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					270033F52DFC11DB00F319E0 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 270033E82DFC11DA00F319E0;
+					};
+					270033FF2DFC11DB00F319E0 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 270033E82DFC11DA00F319E0;
+					};
+					275B60502E0EB6350074561B = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					276E0C7A2E091DA0009EE35F = {
+						CreatedOnToolsVersion = 26.0;
+					};
+				};
+			};
+			buildConfigurationList = 270033E42DFC11DA00F319E0 /* Build configuration list for PBXProject "Lyracalise" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 270033E02DFC11DA00F319E0;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				272011AF2E0AE1EE00C54BD6 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 270033EA2DFC11DA00F319E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				270033E82DFC11DA00F319E0 /* Lyracalise */,
+				270033F52DFC11DB00F319E0 /* LyracaliseTests */,
+				270033FF2DFC11DB00F319E0 /* LyracaliseUITests */,
+				276E0C7A2E091DA0009EE35F /* LyracaliseWidgetExtension */,
+				275B60502E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		270033E72DFC11DA00F319E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				272011772E0AB51C00C54BD6 /* Secrets.xcconfig in Resources */,
+				270034322DFC180900F319E0 /* sample.lrc in Resources */,
+				27C94DBA2E0A8BFD000FE67A /* Taylor Swift - Love Story.lrc in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033F42DFC11DB00F319E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033FE2DFC11DB00F319E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		275B604F2E0EB6350074561B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		276E0C792E091DA0009EE35F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		270033E52DFC11DA00F319E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				272011702E0AAC7000C54BD6 /* LRCParser.swift in Sources */,
+				272011762E0AB51C00C54BD6 /* Secrets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033F22DFC11DB00F319E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270033FC2DFC11DB00F319E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		275B604D2E0EB6350074561B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		276E0C772E091DA0009EE35F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		270033F82DFC11DB00F319E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 270033E82DFC11DA00F319E0 /* Lyracalise */;
+			targetProxy = 270033F72DFC11DB00F319E0 /* PBXContainerItemProxy */;
+		};
+		270034022DFC11DB00F319E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 270033E82DFC11DA00F319E0 /* Lyracalise */;
+			targetProxy = 270034012DFC11DB00F319E0 /* PBXContainerItemProxy */;
+		};
+		275B60612E0EB6360074561B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 275B60502E0EB6350074561B /* LyracaliseLyricWidgetExtensionExtension */;
+			targetProxy = 275B60602E0EB6360074561B /* PBXContainerItemProxy */;
+		};
+		276E0C902E091DA1009EE35F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 276E0C7A2E091DA0009EE35F /* LyracaliseWidgetExtension */;
+			targetProxy = 276E0C8F2E091DA1009EE35F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		270034082DFC11DB00F319E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		270034092DFC11DB00F319E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2700340B2DFC11DB00F319E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = Lyracalise/Lyracalise.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/vishnu/Documents/Documents - Mac/CSE(AI&ML)/Projects/Personal/Apps/4.Lyracalise(github)/Lyracalise(git)/Lyracalise/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2700340C2DFC11DB00F319E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = Lyracalise/Lyracalise.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/vishnu/Documents/Documents - Mac/CSE(AI&ML)/Projects/Personal/Apps/4.Lyracalise(github)/Lyracalise(git)/Lyracalise/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2700340E2DFC11DB00F319E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lyracalise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lyracalise";
+			};
+			name = Debug;
+		};
+		2700340F2DFC11DB00F319E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lyracalise.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lyracalise";
+			};
+			name = Release;
+		};
+		270034112DFC11DB00F319E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lyracalise;
+			};
+			name = Debug;
+		};
+		270034122DFC11DB00F319E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lyracalise;
+			};
+			name = Release;
+		};
+		275B60642E0EB6360074561B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LyracaliseLyricWidgetExtensionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LyracaliseLyricWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LyracaliseLyricWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseLyricWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		275B60652E0EB6360074561B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LyracaliseLyricWidgetExtensionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LyracaliseLyricWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LyracaliseLyricWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseLyricWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		276E0C942E091DA1009EE35F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LyracaliseWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LyracaliseWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LyracaliseWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		276E0C952E091DA1009EE35F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LyracaliseWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9X653KYUFJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LyracaliseWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LyracaliseWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vishnu.lyracalise.LyracaliseWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		270033E42DFC11DA00F319E0 /* Build configuration list for PBXProject "Lyracalise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				270034082DFC11DB00F319E0 /* Debug */,
+				270034092DFC11DB00F319E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2700340A2DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "Lyracalise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2700340B2DFC11DB00F319E0 /* Debug */,
+				2700340C2DFC11DB00F319E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2700340D2DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "LyracaliseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2700340E2DFC11DB00F319E0 /* Debug */,
+				2700340F2DFC11DB00F319E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		270034102DFC11DB00F319E0 /* Build configuration list for PBXNativeTarget "LyracaliseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				270034112DFC11DB00F319E0 /* Debug */,
+				270034122DFC11DB00F319E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		275B60632E0EB6360074561B /* Build configuration list for PBXNativeTarget "LyracaliseLyricWidgetExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				275B60642E0EB6360074561B /* Debug */,
+				275B60652E0EB6360074561B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		276E0C932E091DA1009EE35F /* Build configuration list for PBXNativeTarget "LyracaliseWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				276E0C942E091DA1009EE35F /* Debug */,
+				276E0C952E091DA1009EE35F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		272011AF2E0AE1EE00C54BD6 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		272011B02E0AE1EE00C54BD6 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 272011AF2E0AE1EE00C54BD6 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 270033E12DFC11DA00F319E0 /* Project object */;
+}
